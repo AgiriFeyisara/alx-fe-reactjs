@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav style={{ background: "navy", padding: "20px" }}>
+    <nav style={{ backgroundColor: "navy", padding: "20px" }}>
       <div
         style={{
           display: "flex",
           alignItems: "center",
           gap: "20px",
+          justifyContent: "space-between",
         }}
       >
         <Link
