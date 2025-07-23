@@ -12,8 +12,8 @@ const EditRecipeForm = ({ recipe }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     updateRecipe(recipe.id, formData);
     alert("Recipe updated!");
   };
