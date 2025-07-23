@@ -21,7 +21,6 @@ const EditRecipeForm = ({ recipe }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="text"
         name="title"
         value={formData.title}
         onChange={handleChange}
@@ -33,7 +32,7 @@ const EditRecipeForm = ({ recipe }) => {
         onChange={handleChange}
         required
       />
-      <button type="submit">Save Changes</button>
+      <button type="submit">Update Recipe</button>
     </form>
   );
 };
