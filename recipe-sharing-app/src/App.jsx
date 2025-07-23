@@ -1,12 +1,11 @@
-// App.js
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
 import RecipeList from "./components/RecipeList";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -20,7 +19,7 @@ function App() {
         />
         <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Routes>
-    </>
+    </BrowserRouter>
   );
 }
 
