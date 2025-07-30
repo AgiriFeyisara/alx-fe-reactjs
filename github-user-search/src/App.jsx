@@ -1,21 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import About from "./components/About";
+import Search from "./components/Search";
 
-const App = () => {
-  return (
-    <Router>
-      <Header />
-      <main style={{ padding: "20px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </main>
-    </Router>
-  );
-};
+const App = () => (
+  <div style={{ padding: "40px", fontFamily: "Arial" }}>
+    <h1>GitHub User Search</h1>
+    <Search />
+  </div>
+);
 
 export default App;
