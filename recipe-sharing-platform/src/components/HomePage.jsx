@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import recipeData from "../data.json";
+import recipeData from "../data.json"; // adjust path if needed
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-4xl font-extrabold mb-8 text-center text-blue-700">
-        Recipe Collections
+        🍽 Recipe Collection
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -25,15 +25,14 @@ const HomePage = () => {
               alt={recipe.title}
               className="w-full h-56 object-cover"
             />
-
             <div className="p-5">
               <h2 className="text-2xl font-semibold text-gray-800 mb-3">
                 {recipe.title}
               </h2>
               <p className="text-gray-600 mb-4">
-                {recipe.description.length > 100
-                  ? recipe.description.slice(0, 100) + "..."
-                  : recipe.description}
+                {recipe.summary.length > 100
+                  ? recipe.summary.slice(0, 100) + "..."
+                  : recipe.summary}
               </p>
               <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200">
                 View Recipe
