@@ -4,24 +4,37 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!title.trim()) newErrors.title = "Title is required";
+    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required";
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create recipe object
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     const newRecipe = {
       title,
-      ingredients: ingredients.split("\n"), // split by line
+      ingredients: ingredients.split("\n"),
       instructions: steps,
     };
 
     console.log("New Recipe:", newRecipe);
 
-    // Here you could send data to a backend or save to state
-    // For now, just reset form
     setTitle("");
     setIngredients("");
     setSteps("");
+    setErrors({});
   };
 
   return (
@@ -30,7 +43,6 @@ const AddRecipeForm = () => {
         Add a New Recipe
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Title */}
         <div>
           <label className="block text-gray-700 font-semibold mb-2">
             Recipe Title
@@ -41,11 +53,12 @@ const AddRecipeForm = () => {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500"
             placeholder="Enter recipe title"
-            required
           />
+          {errors.title && (
+            <p className="text-red-500 text-sm">{errors.title}</p>
+          )}
         </div>
 
-        {/* Ingredients */}
         <div>
           <label className="block text-gray-700 font-semibold mb-2">
             Ingredients
@@ -56,11 +69,12 @@ const AddRecipeForm = () => {
             className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500"
             placeholder="List ingredients, one per line"
             rows="4"
-            required
           ></textarea>
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm">{errors.ingredients}</p>
+          )}
         </div>
 
-        {/* Preparation Steps */}
         <div>
           <label className="block text-gray-700 font-semibold mb-2">
             Preparation Steps
@@ -71,11 +85,12 @@ const AddRecipeForm = () => {
             className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500"
             placeholder="Describe the cooking process"
             rows="6"
-            required
           ></textarea>
+          {errors.steps && (
+            <p className="text-red-500 text-sm">{errors.steps}</p>
+          )}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200"
