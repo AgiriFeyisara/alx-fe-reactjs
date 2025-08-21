@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const RegistrationForm = () => {
   const [userName, setUserName] = useState("");
@@ -14,53 +13,49 @@ const RegistrationForm = () => {
       setError("All fields are required!");
       return;
     }
+
     setError("");
+    console.log("Form submitted:", { userName, email, password });
 
-    console.log("Form Submitted {username,email,password");
-
+    // reset
     setUserName("");
     setEmail("");
     setPassword("");
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          placeholder="Enter username"
+        />
+
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email"
+        />
+
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
+        />
 
         {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
