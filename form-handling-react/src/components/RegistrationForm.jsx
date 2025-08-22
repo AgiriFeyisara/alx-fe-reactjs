@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -9,16 +9,16 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!userName || !email || !password) {
+    if (!username || !email || !password) {
       setError("All fields are required!");
       return;
     }
 
     setError("");
-    console.log("Form submitted:", { userName, email, password });
+    console.log("Form submitted:", { username, email, password });
 
     // reset
-    setUserName("");
+    setUsername("");
     setEmail("");
     setPassword("");
   };
@@ -30,8 +30,8 @@ const RegistrationForm = () => {
         <input
           type="text"
           id="username"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          value={username} // 👈 lowercase
+          onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter username"
         />
 
