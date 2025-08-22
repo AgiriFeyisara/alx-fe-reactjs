@@ -10,15 +10,17 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  // ✅ destructure both error and isError
   const { data, error, isError, isLoading } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
+
+    cacheTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 1,
+    refetchOnWindowFocus: true,
+    keepPreviousData: true,
   });
 
   if (isLoading) return <div>Loading......</div>;
-
-  // ✅ handle with isError but still reference error so tests pass
   if (isError) return <div>Error loading data: {error.message}</div>;
 
   return (
