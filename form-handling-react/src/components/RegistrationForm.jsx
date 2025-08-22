@@ -4,17 +4,29 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState(""); // 👈 plural 'errors'
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
-      setError("All fields are required!");
+    if (!username) {
+      setErrors("Username is required");
       return;
     }
 
-    setError("");
+    if (!email) {
+      // 👈 separate check
+      setErrors("Email is required");
+      return;
+    }
+
+    if (!password) {
+      // 👈 separate check
+      setErrors("Password is required");
+      return;
+    }
+
+    setErrors("");
     console.log("Form submitted:", { username, email, password });
 
     // reset
@@ -30,7 +42,7 @@ const RegistrationForm = () => {
         <input
           type="text"
           id="username"
-          value={username} // 👈 lowercase
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter username"
         />
@@ -53,7 +65,7 @@ const RegistrationForm = () => {
           placeholder="Enter password"
         />
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {errors && <p style={{ color: "red" }}>{errors}</p>}
 
         <button type="submit">Submit</button>
       </form>
