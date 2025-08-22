@@ -1,23 +1,16 @@
-// src/App.jsx
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
+import Blog from "./components/Blog";
 import Profile from "./components/Profile";
-import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
-import BlogList from "./components/BlogList";
-import BlogPost from "./components/BlogPost";
 
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        {/* Homepage */}
         <Route path="/" element={<Home />} />
-
-        <Route path="/login" element={<Login />} />
-
-        {/* Protected Profile Routes */}
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<Blog />} />
         <Route
           path="/profile/*"
           element={
@@ -25,14 +18,10 @@ const App = () => {
               <Profile />
             </PrivateRoute>
           }
-        ></Route>
-
-        {/* Public blog routes */}
-        <Route path="/blogs" element={<BlogList />} />
-        <Route path="/blogs/:postId" element={<BlogPost />} />
+        />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
-};
+}
 
 export default App;

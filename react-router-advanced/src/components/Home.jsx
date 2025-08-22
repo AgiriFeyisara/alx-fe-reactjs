@@ -12,8 +12,8 @@ const Home = () => {
         <Link to="/login" style={{ marginRight: "1rem" }}>
           Login
         </Link>
-        <Link to="/blogs" style={{ marginRight: "1rem" }}>
-          Blogs
+        <Link to="/blog" style={{ marginRight: "1rem" }}>
+          Blog
         </Link>
         <Link to="/profile/details">Profile</Link>
       </nav>

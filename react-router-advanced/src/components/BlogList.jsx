@@ -1,24 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Blog from "./components/Blog";
+import BlogDetails from "./components/BlogDetails";
+import Profile from "./components/Profile";
+import PrivateRoute from "./components/PrivateRoute";
 
-const BlogList = () => {
-  const posts = [
-    { id: 1, title: "React Basics" },
-    { id: 2, title: "Understanding useEffect" },
-  ];
-
+function App() {
   return (
-    <div>
-      <h1>Blog Posts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={`/blog/${post.id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-export default BlogList;
+        {/* Blog Routes */}
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
+
+        {/* Profile (Protected) */}
+        <Route
+          path="/profile/*"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Catch-all route */}
+        <Route path="*" element={<h2>404 Page Not Found</h2>} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
