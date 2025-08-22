@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Blog from "./components/Blog";
 import Profile from "./components/Profile";
-import PrivateRoute from "./components/PrivateRoute";
 import BlogPost from "./components/BlogPost";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,9 +17,9 @@ function App() {
         <Route
           path="/profile/*"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <Profile />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
       </Routes>
