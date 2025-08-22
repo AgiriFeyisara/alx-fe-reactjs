@@ -1,20 +1,28 @@
 // src/components/Profile.jsx
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Routes, Route, Outlet } from "react-router-dom";
+import ProfileDetails from "./ProfileDetails";
+import ProfileSettings from "./ProfileSettings";
 
 const Profile = () => {
   return (
-    <div>
-      <h1>Profile Page</h1>
+    <div style={{ padding: "1rem" }}>
+      <h2>My Profile</h2>
 
-      {/* Navigation Links */}
-      <nav>
-        <Link to="details">Profile Details</Link> |{" "}
-        <Link to="settings">Profile Settings</Link> |{" "}
-        <Link to="/blogs">Blog List</Link>
+      <nav style={{ marginBottom: "1rem" }}>
+        <Link to="details" style={{ marginRight: "1rem" }}>
+          Details
+        </Link>
+        <Link to="settings">Settings</Link>
       </nav>
 
-      {/* This is where nested routes render */}
+      {/* Render nested routes here */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
+
+      {/* Outlet fallback if needed */}
       <Outlet />
     </div>
   );

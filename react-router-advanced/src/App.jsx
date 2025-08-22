@@ -7,8 +7,6 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import BlogList from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
 
 const App = () => {
   return (
@@ -27,10 +25,7 @@ const App = () => {
               <Profile />
             </PrivateRoute>
           }
-        >
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+        ></Route>
 
         {/* Public blog routes */}
         <Route path="/blogs" element={<BlogList />} />
